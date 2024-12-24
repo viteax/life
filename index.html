@@ -3,6 +3,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script type="text/javascript" src="jquery.min.js"></script>
@@ -10,16 +13,24 @@
 <script type="text/javascript" src="raphael.js"></script> 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="margin:0;padding: 20px;">
 
 <div id="wrapper">
-    <img src="background.jpg">
+    <img style="margin:0;padding-top: 60px;" src="background.jpg">
     <div id="canvas">  
     </div>
 </div>
-<div id="menu">
-Введите дату Вашего рождения: <input type="text" id="start_date" placeholder="Формат: дд.мм.гггг"> 
-<input class="btn btn-primary" type="button" id="btn_test" value="Расчитать!"><br>
+
+<div class="d-flex align-items-center" id="menu" style="padding-left: 120px;">
+	<div>
+		Введите дату Вашего рождения:
+	</div>
+	<div class="p-3">
+		<input class="form-control" type="text" id="start_date" placeholder="Формат: дд.мм.гггг">
+	</div>
+	<div>
+		<input class="btn btn-primary" type="button" id="btn_test" value="Расчитать!"><br>
+	</div>
 </div>
 
 <canvas id='canvas' width="0" height="0">1</canvas>
@@ -65,20 +76,21 @@ $('#btn_test').click(function () {
 	var num_weeks_row = Math.floor(num_weeks_all / (365.25 / 7));
 	var extra_weeks = num_weeks_all % (365.25 / 7);
 //	alert("Years: " + num_weeks_row + ", extra weeks: " + extra_weeks + ", Overall days: " + diff_in_days);
-	
+	var left_padding = 128
+	var top_padding = 259
 	var collection = [];
 	var paper = Raphael(10, 50, 1204, 1904);
 	for (var i = 0; i < 52; i++){
 		collection[i] = new Array(num_weeks_row);
 		for (var j = 0; j < num_weeks_row; j++){
-			collection[i][j] = paper.rect(110+(20*i), 187+(18*j), 10, 10);
+			collection[i][j] = paper.rect(left_padding+(20*i), top_padding+(18*j), 10, 10);
 			collection[i][j].attr("fill","#f00");
 		}
 	}
 	if (extra_weeks != 0)
 		collection_extra = [];
 		for (var ex = 0; ex < extra_weeks; ex++) {
-		collection[ex] = paper.rect(110+(20*ex), 187+(18*(num_weeks_row)), 10, 10);
+		collection[ex] = paper.rect(left_padding+(20*ex), top_padding+(18*(num_weeks_row)), 10, 10);
 		collection[ex].attr("fill","#f00");
 		}
 });
