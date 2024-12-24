@@ -1,6 +1,11 @@
+
 #menu {
-position: relative;
-padding: 0;
+    position: relative;
+    padding: 0;
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
 
 #wrapper {
